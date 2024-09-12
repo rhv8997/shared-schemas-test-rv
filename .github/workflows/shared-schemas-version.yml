@@ -15,8 +15,8 @@ jobs:
           GIT_TAG=$(date +%Y.%m%d.%H%M)
           echo "GIT_TAG is: $GIT_TAG"
           echo "CALVER_VERSION=$GIT_TAG" >> version.env
-          git config --global user.email kenneth.man@ntegra.co.uk
-          git config --global user.name kenneth-man
+          git config --global user.email rhv8997@gmail.com
+          git config --global user.name rhv8997
           git remote set-url --push origin "https://${{secrets.CLASSIC_PAT}}@github.com/kenneth-man/shared-schemas-test.git"
           git tag -a "$GIT_TAG" -m "$GIT_TAG"
           git push origin "$GIT_TAG"

@@ -9,7 +9,7 @@ jobs:
       # we should check lint on any push or pull request to a branch
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/kenneth-man/poetry-ci-test-ghcr:latest # TODO: point to DD GHCR
+      image: ghcr.io/rhv8997/poetry-ci:latest # TODO: point to DD GHCR
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.CLASSIC_PAT }} # TODO: use secret from a Classic PAT on DD Github

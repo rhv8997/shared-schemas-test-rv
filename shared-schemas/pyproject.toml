@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "shared-schemas-test-rv"
+name = "shared-schemas"
 version = "1.7.6"
 description = ""
 authors = ["Lee Everett <lee.everett@faculty.ai>"]

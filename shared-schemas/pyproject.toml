@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "shared-schemas"
+version = "1.7.6"
+description = ""
+authors = ["Lee Everett <lee.everett@faculty.ai>"]
+readme = "README.md"
+packages = [{ include = "schemas" }]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pydantic = { extras = ["all"], version = "^2.0.3" }
+pytest = "^7.3.1"
+python-semantic-release = "^8.7.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.8.0"
+isort = "^5.13.2"
+mypy = "^1.5.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+profile = "black"
+
+[tool.semantic_release]
+version_toml = ["pyproject.toml:tool.poetry.version"]
+hvcs = "gitlab"
+upload_to_repository = false
+commit_message = "chore(release): {version}"
+
+[tool.semantic_release.remote]
+type = "gitlab"
+token = "GL_TOKEN"
+
+[tool.semantic_release.changelog]
+changelog_file = "CHANGELOG.md"
+
+[tool.semantic_release.branches.main]
+match = "main"
+prerelease_token = "rc"
+prerelease = false

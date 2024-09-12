@@ -1,0 +1,84 @@
+# Temporary and binary files
+*~
+*.py[cod]
+*.so
+*.cfg
+!.isort.cfg
+!setup.cfg
+*.orig
+*.log
+*.pot
+__pycache__/*
+.cache/*
+.*.swp
+*/.ipynb_checkpoints/*
+*.dump
+sw_scratch.py
+
+# Project files
+.ropeproject
+.project
+.pydevproject
+.settings
+.vscode
+tags
+
+# Package files
+*.egg
+*.eggs/
+.installed.cfg
+*.egg-info
+
+# Unittest and coverage
+htmlcov/*
+.coverage
+.tox
+.nox
+junit.xml
+coverage.xml
+.pytest_cache/
+.mypy
+
+# Build and docs folder/files
+build/*
+dist
+dist/*
+sdist/*
+docs/api/*
+docs/_rst/*
+docs/_build/*
+cover/*
+
+# Per-project virtualenvs
+.venv*/
+.env
+/venv
+
+# exclude data from source control by default
+data/
+
+# Mac OS-specific storage files
+.DS_Store
+
+# secret
+.secret
+.secrets.*
+*SECRET*
+
+# source data
+raw*
+
+# python tests
+.coverage*
+htmlcov
+
+# localstack
+.localstack
+
+# pycharm
+.idea
+.run
+.runmark
+
+# notebooks
+/notebooks

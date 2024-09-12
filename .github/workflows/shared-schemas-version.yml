@@ -1,0 +1,28 @@
+name: Shared Schemas Version
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate Version Number and Push With Tag
+        run: | # TODO: 'git remote set-url --push origin "https..."' to point to shared schemas github repo url
+          GIT_TAG=$(date +%Y.%m%d.%H%M)
+          echo "GIT_TAG is: $GIT_TAG"
+          echo "CALVER_VERSION=$GIT_TAG" >> version.env
+          git config --global user.email kenneth.man@ntegra.co.uk
+          git config --global user.name kenneth-man
+          git remote set-url --push origin "https://${{secrets.CLASSIC_PAT}}@github.com/kenneth-man/shared-schemas-test.git"
+          git tag -a "$GIT_TAG" -m "$GIT_TAG"
+          git push origin "$GIT_TAG"
+
+      - name: Upload Version Environment Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: shared-schemas-version-env
+          path: version.env

@@ -1,0 +1,34 @@
+name: Shared Schemas Lint
+
+on:
+  push:
+
+jobs:
+  lint:
+    # if: github.ref_type == 'tag' || !startsWith(github.event.head_commit.message, 'chore(release)')
+      # we should check lint on any push or pull request to a branch
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/kenneth-man/poetry-ci-test-ghcr:latest # TODO: point to DD GHCR
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.CLASSIC_PAT }} # TODO: use secret from a Classic PAT on DD Github
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check File Linting
+        run: |
+          cd shared-schemas
+          poetry install
+          poetry run black --check .
+          poetry run isort **/*.py --check-only
+  
+  message-lint:
+    runs-on: ubuntu-latest
+    container: node:18-alpine
+    steps:
+      - uses: actions/checkout@v4
+
+      # If the config file input doesn't exist, config-conventional settings below will be loaded as a default fallback
+      # https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional
+      - uses: wagoid/commitlint-github-action@v6
